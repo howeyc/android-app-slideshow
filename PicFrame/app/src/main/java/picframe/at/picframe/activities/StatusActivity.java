@@ -50,7 +50,6 @@ public class StatusActivity extends ActionBarActivity {
     protected void onResume(){
         super.onResume();
         setLocalFolderAndFileCount();
-        setOwnCloudStatus();
 
     }
 
@@ -65,28 +64,6 @@ public class StatusActivity extends ActionBarActivity {
         }
         currentFolder.setText(localFolder);
         nbFiles.setText(localFileCount);
-    }
-
-    private void setOwnCloudStatus(){
-//        String remoteOCFolder = "";
-//        String remoteOCFileCount = "-";
-        String nextDownload = getString(R.string.status_downloadIntervalNoDownload);
-        String loginCheckResult = "-";
-
-        if((AppData.getSourceType() == AppData.sourceTypes.OwnCloud) ) {
-
-            Long nextAlarm = AppData.getNextAlarmTime();
-            Log.d("nextAlarm", String.valueOf(nextAlarm));
-            if (nextAlarm != -1 && nextAlarm > new GregorianCalendar().getTimeInMillis()) {
-                TimeConverter tc = new TimeConverter();
-                nextDownload = tc.millisecondsToDate(nextAlarm);
-            }
-
-            loginCheckResult = (AppData.getLoginSuccessful()) ? "Successful" : "Failed";
-        }
-        this.nextDownload.setText(nextDownload);
-//        this.nbRemoteOCFiles.setText(remoteOCFileCount);
-        this.lastLoginCheck.setText(loginCheckResult);
     }
 
 }

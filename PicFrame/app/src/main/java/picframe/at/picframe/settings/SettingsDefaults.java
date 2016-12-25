@@ -23,8 +23,6 @@ public class SettingsDefaults {
         defValues.put(R.string.sett_key_displaytime, "4");
         defValues.put(R.string.sett_key_srctype, "0");
         defValues.put(R.string.sett_key_srcpath_sd, "");
-        defValues.put(R.string.sett_key_srcpath_owncloud, "https://");
-//        defValues.put(R.string.sett_key_srcpath_dropbox, "https://");
         defValues.put(R.string.sett_key_recursiveSearch, tBool);
         defValues.put(R.string.sett_key_transition, "10");
         defValues.put(R.string.sett_key_downloadInterval, "12");

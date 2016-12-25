@@ -23,8 +23,8 @@
     <!-- SERVICE/NOTIFICATION STRINGS END -->
 
     <!-- MAIN STRINGS -->
-    <string name="app_name" translatable="false">PicFrame</string>
-    <string name="app_version" translatable="false">1.5.2</string>
+    <string name="app_name" translatable="false">PicFrame Local</string>
+    <string name="app_version" translatable="false">2.0.0</string>
     <string name="action_downloadNow">Download now</string>
     <string name="main_toast_noUsernameSet">No Username or Password set for network resource.</string>
     <string name="main_toast_noSDReadRights">Can\'t read from external SD card.</string>
@@ -40,10 +40,6 @@
     <string name="main_dialog_tutorial_dontShowAgainButton">Don\'t show again</string>
     <string name="main_dialog_tutorial_okButton">OK</string>
     <!-- MAIN STRINGS END -->
-
-    <!-- OC-Tasks -->
-    <string name="octask_toast_loginFailed">Couldn\'t connect/login to owncloud server.\nPlease check your owncloud settings again. </string>
-    <!-- OC-Tasks END -->
 
     <!-- SETTINGS STRINGS -->
     <string name="action_settings">Settings</string>
@@ -82,16 +78,6 @@
         <!-- Settings-Details Strings -->
     <string name="sett_srcPath_externalSD">Directory</string>
     <string name="sett_srcPath_externalSDSumm">Browse path to pictures</string>
-    <string name="sett_username">Username</string>
-    <string name="sett_usernameSumm">Username for the selected source</string>
-    <string name="sett_password">Password</string>
-    <string name="sett_passwordSumm">Password for the selected source</string>
-    <string name="sett_srcPath_OwnCloud">OwnCloud URL</string>
-    <string name="sett_srcPath_OwnCloudSumm">Set the URL for your OwnCloud Server</string>
-    <string name="sett_downloadInterval">Download Interval</string>
-    <string name="sett_downloadIntervalSumm">Choose an interval, after which the images are fetched from the source again</string>
-    <string name="sett_loginCheck">Login-Check</string>
-    <string name="sett_loginCheckSumm">Click here, to test the login</string>
         <!-- Settings Toast Strings -->
     <string name="sett_toast_delFiles">Deleting images!</string>
     <string name="sett_toast_wrongUrl">Forbidden character at end of URL: \'/\'. Not saving.</string>
@@ -103,7 +89,6 @@
     <string name="sett_dialog_title">Select directory</string>
     <string name="sett_dialog_posBtn" tools:ignore="ButtonCase">Ok</string>
     <string name="sett_dialog_negBtn">Cancel</string>
-    <string name="sett_dialog_changedURL_message">You changed your OwnCloud URL.\nDo you want to delete the old image files before downloading new ones?</string>
     <string name="sett_deleteDataDialog_msg">Do you really want to delete all downloaded image files?</string>
     <string name="sett_deleteDataDialog_posBtn">Yes</string>
     <string name="sett_deleteDataDialog_negBtn">No</string>
@@ -111,7 +96,6 @@
     <string name="sett_detailsPrefScreen_summ">Set specific settings for</string>
     <string name="sett_yes">Yes!</string>
     <string name="sett_no">No</string>
-    <string name="sett_dialog_notConnected_message">The Last Login-Check was not successful; the download will not work.\nAre you sure you want to leave the ownCloud settings?</string>
 
         <!-- KEYS -->
     <string name="sett_key_cat1" translatable="false">sett_cat1</string>
@@ -126,8 +110,6 @@
     <string name="sett_key_displaytime" translatable="false">DisplayTime</string>
     <string name="sett_key_srctype" translatable="false">SrcType</string>
     <string name="sett_key_srcpath_sd" translatable="false">SrcPath_sd</string>
-    <string name="sett_key_srcpath_owncloud" translatable="false">SrcPath_owncloud</string>
-    <string name="sett_key_srcpath_dropbox" translatable="false">SrcPath_dropbox</string>
     <string name="sett_key_recursiveSearch" translatable="false">RecursiveSearch</string>
     <string name="sett_key_deleteData" translatable="false">DeleteData</string>
     <string name="sett_key_transition" translatable="false">Transition</string>
@@ -816,44 +798,12 @@
         Public License instead of this License. But first, please read
         http://www.gnu.org/philosophy/why-not-lgpl.html. "</string>
     <string name="about_license_thirdparty" translatable="false">
-        "Picframe uses ownCloud Android Library,\n
-        Copyright © 2014 ownCloud Inc. Copyright © 2012 Bartek Przybylski.\n
-        ownCloud Android Library is available under MIT license.\n\n
-
-        Text of the MIT License (MIT) :\n
-        Permission is hereby granted, free of charge, to any person obtaining a copy
-        of this software and associated documentation files (the "Software"), to deal
-        in the Software without restriction, including without limitation the rights
-        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-        copies of the Software, and to permit persons to whom the Software is
-        furnished to do so, subject to the following conditions:\n\n
-        The above copyright notice and this permission notice shall be included in
-        all copies or substantial portions of the Software.\n\n
-
-        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-        THE SOFTWARE.\n\n
-        ownCloud Android Library uses\n
-        Apache JackRabbit, version 2.2.5. Copyright © 2004-2010 The Apache Software Foundation.\n
-        Licensed under Apache License, Version 2.0.\n
-        Apache JackRabbit depends on Commons HTTPClient version 3.1 and SLF4j version 1.7.5.\n
-        Copyright © 2004-2010 The Apache Software Foundation. Licensed under Apache License,
-        Version 2.0."</string>
-    <!-- ABOUT STRINGS END -->
+        ""</string>
+   <!-- ABOUT STRINGS END -->
     <!-- STATUS STRINGS -->
     <string name="status" translatable="false">Status</string>
     <string name="status_nbFiles">Files in current display folder</string>
-    <string name="ownCloud">ownCloud Status</string>
     <string name="status_local">Status - General</string>
-    <string name="status_ownCloud">Status - ownCloud</string>
-    <string name="statusOC_nbRemoteFiles">Files on ownCloud server</string>
-    <string name="statusOC_nextAlarm">Next download</string>
-    <string name="statusOC_noAlarm">No download scheduled</string>
-    <string name="statusOC_loginCheck">Connection status</string>
     <string name="status_currentFolder">Current display folder</string>
     <string name="status_buttonAbout">Developed by, Photo credit, Licenses</string>
     <string name="title_activity_status">Status</string>

@@ -29,15 +29,12 @@ public class AlarmScheduler {
     public Long scheduleAlarm(){
 
         deleteAlarm();
-        if(AppData.getSourceType() != AppData.sourceTypes.OwnCloud
-                || AppData.getUpdateIntervalInHours() == -1)
+        if(AppData.getUpdateIntervalInHours() == -1)
         {
             Log.d(TAG,"NExt alarm: -1");
             AppData.setNextAlarmTime(-1L);
             return -1L;
-        } else if (!AppData.getLoginSuccessful()){
-            return -1L;
-        }
+        } 
 
 
         TimeConverter tc = new TimeConverter();

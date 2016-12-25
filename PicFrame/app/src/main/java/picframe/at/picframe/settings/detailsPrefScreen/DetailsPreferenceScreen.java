@@ -36,14 +36,7 @@ public class DetailsPreferenceScreen {
     }
 
     private void fetchCorrectDetailsPrefScreen() {
-        if (AppData.sourceTypes.OwnCloud.equals(mSrcType)) {
-            detailsPreferenceScreen = new OwnCloudPrefs(mSettAct);
-        } else if (AppData.sourceTypes.Dropbox.equals(mSrcType)) {
-            // TODO
-            //detailsPreferenceScreen = new
-        } else {
-            detailsPreferenceScreen = new ExtSdPrefs(mSettAct);
-        }
+        detailsPreferenceScreen = new ExtSdPrefs(mSettAct);
     }
 
     private void prefScreenSetup() {

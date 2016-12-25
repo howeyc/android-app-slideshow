@@ -78,12 +78,6 @@
                 android:layout_toRightOf="@+id/status_reference_colon1"
                 />
         </RelativeLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/status_ownCloud"
-            android:paddingBottom="5dp"/>
         />
         <RelativeLayout
             android:layout_width="match_parent"

@@ -57,10 +57,6 @@ public class GlobalPhoneFuncs {
         List<String> fileArray = new ArrayList<>();
         if (AppData.getSourceType() == AppData.sourceTypes.ExternalSD) {
             fileArray = readSdDirectory(path);
-        } else if (AppData.getSourceType() == AppData.sourceTypes.OwnCloud) {
-            fileArray = readSdDirectory(path);
-        } else if (AppData.getSourceType() == AppData.sourceTypes.Dropbox) {
-            fileArray = readSdDirectory(path);
         }
         if (fileArray.isEmpty()) return fileArray;
         if (AppData.getRandomize()) {

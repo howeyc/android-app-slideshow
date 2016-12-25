@@ -72,7 +72,6 @@ import picframe.at.picframe.helper.viewpager.RotateDownTransformer;
 import picframe.at.picframe.helper.viewpager.StackTransformer;
 import picframe.at.picframe.helper.viewpager.ZoomInTransformer;
 import picframe.at.picframe.helper.viewpager.ZoomOutPageTransformer;
-import picframe.at.picframe.service.DownloadService;
 import picframe.at.picframe.settings.AppData;
 
 public class MainActivity extends ActionBarActivity {
@@ -175,8 +174,6 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-    // TODO: folderpicker for owncloud server folder                                ! L
-
     @Override
     public boolean onMenuOpened(int featureId, Menu menu) {
         startActivity(new Intent(this, SettingsActivity.class));
@@ -236,11 +233,7 @@ public class MainActivity extends ActionBarActivity {
         if (menu == null || !menu.hasVisibleItems())
             return super.onPrepareOptionsMenu(menu);
 
-        if (AppData.getSourceType() == AppData.sourceTypes.OwnCloud) {
-            menu.findItem(R.id.action_download).setVisible(true);
-        } else {
-            menu.findItem(R.id.action_download).setVisible(false);
-        }
+        menu.findItem(R.id.action_download).setVisible(false);
         return true;
     }
 
@@ -258,12 +251,6 @@ public class MainActivity extends ActionBarActivity {
             case R.id.action_settings:
                 myIntent = new Intent(this, SettingsActivity.class);
                 break;
-            case R.id.action_download:
-                debug("dowdnload now clicked");
-                Intent startDownloadIntent = new Intent(mContext, DownloadService.class);
-                startDownloadIntent.setAction(Keys.ACTION_STARTDOWNLOAD);
-                startService(startDownloadIntent);
-                return true;
             case R.id.action_about:
                 myIntent = new Intent(this, StatusActivity.class);
                 break;
@@ -536,42 +523,14 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private boolean checkForProblemsAndShowToasts() {
-        // OwnCloud or Dropbox selected
-        if (!AppData.sourceTypes.ExternalSD.equals(AppData.getSourceType())) {
-            // if no write rights, we don't need to download
-            if (!GlobalPhoneFuncs.isExternalStorageWritable()) {
-                Toast.makeText(this, R.string.main_toast_noSDWriteRights, Toast.LENGTH_SHORT).show();
-            } else {
-                // If no Username set although source is not SD Card
-                if ("".equals(AppData.getUserName()) || "".equals(AppData.getUserPassword())) {
-                    Toast.makeText(this, R.string.main_toast_noUsernameSet, Toast.LENGTH_SHORT).show();
-                } else {
-                    debug("username and pw set");
-                    // Try to connect & login to selected source server
-                    if (AppData.sourceTypes.OwnCloud.equals(AppData.getSourceType())) {
-                        debug("trying OC check");
-                        //startConnectionCheck();
-                        Intent startDownloadIntent = new Intent(mContext, DownloadService.class);
-                        startDownloadIntent.setAction(Keys.ACTION_STARTDOWNLOAD);
-                        startService(startDownloadIntent);
-                        return true;
-                    }// else if (AppData.getSourceType().equals(AppData.sourceTypes.Dropbox))
-                    {
-                        // TODO: Dropbox checks go here
-                    }
-                }
-            }
-            // SD Card selected
+        if (!GlobalPhoneFuncs.isExternalStorageReadable()) {
+            // If no read rights for SD although source is SD Card
+            Toast.makeText(this, R.string.main_toast_noSDReadRights, Toast.LENGTH_SHORT).show();
         } else {
-            if (!GlobalPhoneFuncs.isExternalStorageReadable()) {
-                // If no read rights for SD although source is SD Card
-                Toast.makeText(this, R.string.main_toast_noSDReadRights, Toast.LENGTH_SHORT).show();
+            if (!GlobalPhoneFuncs.hasAllowedFiles()) {
+                Toast.makeText(this, R.string.main_toast_noFileFound, Toast.LENGTH_SHORT).show();
             } else {
-                if (!GlobalPhoneFuncs.hasAllowedFiles()) {
-                    Toast.makeText(this, R.string.main_toast_noFileFound, Toast.LENGTH_SHORT).show();
-                } else {
-                    return true;
-                }
+                return true;
             }
         }
         return false;

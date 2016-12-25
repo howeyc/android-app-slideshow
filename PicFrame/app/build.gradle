@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':owncloud-library')
     compile 'com.android.support:appcompat-v7:21.0.0'
     compile 'ch.acra:acra:4.6.2'
     compile 'com.android.support:support-v4:23.0.1'
@@ -16,8 +15,8 @@ android {
         applicationId "picframe.at.picframe"
         minSdkVersion 8
         targetSdkVersion 21
-        versionCode 13
-        versionName "1.7.0"
+        versionCode 14
+        versionName "2.0.0"
     }
     buildTypes {
         release {

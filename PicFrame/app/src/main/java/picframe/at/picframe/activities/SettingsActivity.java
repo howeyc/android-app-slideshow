@@ -60,7 +60,6 @@ import picframe.at.picframe.helper.Keys;
 import picframe.at.picframe.R;
 import picframe.at.picframe.helper.GlobalPhoneFuncs;
 import picframe.at.picframe.helper.alarm.AlarmScheduler;
-import picframe.at.picframe.service.connectionChecker.ConnectionCheck_OC;
 import picframe.at.picframe.settings.AppData;
 import picframe.at.picframe.settings.SettingsDefaults;
 import picframe.at.picframe.settings.detailsPrefScreen.DetailsPreferenceScreen;
@@ -179,11 +178,6 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         editableTitleFields.add(getString(R.string.sett_key_transition));
         editableTitleFields.add(getString(R.string.sett_key_srctype));
         editableTitleFields.add(getString(R.string.sett_key_srcpath_sd));
-        editableTitleFields.add(getString(R.string.sett_key_username));
-        editableTitleFields.add(getString(R.string.sett_key_password));
-        editableTitleFields.add(getString(R.string.sett_key_srcpath_owncloud));
-        editableTitleFields.add(getString(R.string.sett_key_downloadInterval));
-        editableTitleFields.add(getString(R.string.sett_key_loginCheckButton));
     }
 
     private void populateFieldsToRemove() {
@@ -204,21 +198,7 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
             if (getString(R.string.sett_key_srctype).equals(key)) {
                 createCat2Fields();
                 alarmScheduler.scheduleAlarm();
-            } else if (getString(R.string.sett_key_username).equals(key)  ||
-                        getString(R.string.sett_key_password).equals(key) ||
-                        getString(R.string.sett_key_srcpath_owncloud).equals(key)) {
-                setLoginStatus(false);
-                if (!AppData.getUserName().equals("") &&
-                        !AppData.getUserPassword().equals("") &&
-                        !AppData.getSourcePath().equals("") &&
-                        !AppData.getSourcePath().equals(SettingsDefaults
-                                .getDefaultValueForKey(R.string.sett_key_srcpath_owncloud))) {
-                    new Handler().post(new ConnectionCheck_OC());
-                }
-            } else if (getString(R.string.sett_key_loginCheckButton).equals(key) ||
-                    getString(R.string.sett_key_downloadInterval).equals(key)) {
-                alarmScheduler.scheduleAlarm();
-            }
+            }        
         }
     }
 
@@ -258,8 +238,6 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
                 if (getString(R.string.sett_key_srcpath_sd).equals(mPref.getKey()) &&
                         AppData.sourceTypes.ExternalSD.equals(AppData.getSourceType())) {
                     mPrefValue = AppData.getSourcePath();
-                } else if (getString(R.string.sett_key_loginCheckButton).equals(mPref.getKey())) {
-                    mPrefValue = AppData.getLoginSuccessful() ? getString(R.string.sett_loginCheck_success) : getString(R.string.sett_loginCheck_failure);
                 }
             }
             if (getString(R.string.sett_key_displaytime).equals(key)) {
@@ -270,18 +248,8 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
                 mPrefTitle = getString(R.string.sett_srcType);
             } else if (getString(R.string.sett_key_srcpath_sd).equals(key)) {
                 mPrefTitle = getString(R.string.sett_srcPath_externalSD);
-            } else if (getString(R.string.sett_key_username).equals(key)) {
-                mPrefTitle = getString(R.string.sett_username);
-            } else if (getString(R.string.sett_key_password).equals(key)) {
-                mPrefTitle = getString(R.string.sett_password);
-            } else if (getString(R.string.sett_key_srcpath_owncloud).equals(key)) {
-                mPrefTitle = getString(R.string.sett_srcPath_OwnCloud);
-            } else if (getString(R.string.sett_key_downloadInterval).equals(key)) {
-                mPrefTitle = getString(R.string.sett_downloadInterval);
-            } else if (getString(R.string.sett_key_loginCheckButton).equals(key)) {
-                mPrefTitle = getString(R.string.sett_loginCheck);
             }
-            mPref.setTitle(mPrefTitle + ": " + mPrefValue);
+           mPref.setTitle(mPrefTitle + ": " + mPrefValue);
         }
     }
 
@@ -313,22 +281,10 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
     }
 
     public void setDetailsPrefScreen() {
-        if (AppData.sourceTypes.OwnCloud.equals(AppData.getSourceType())) {
-            detailsPrefScreenToAdd = new DetailsPreferenceScreen(
-                    AppData.getSrcTypeInt(),
-                    getPreferenceManager().createPreferenceScreen(this),
-                    SettingsActivity.this);
-            //detailsPrefScreenToAdd.set*Resource
-            if (myCat2 != null && detailsPrefScreenToAdd.getPreferenceScreen() != null) {
-                myCat2.addPreference(detailsPrefScreenToAdd.getPreferenceScreen());
-            }
-        } else if (AppData.sourceTypes.ExternalSD.equals(AppData.getSourceType())) {
-            Preference pref = new ExtSdPrefs(this).getFolderPicker();
-            if (myCat2 != null && pref != null) {
-                myCat2.addPreference(pref);
-            }
+        Preference pref = new ExtSdPrefs(this).getFolderPicker();
+        if (myCat2 != null && pref != null) {
+            myCat2.addPreference(pref);
         }
-
     }
 
     private void setIncludeSubdirsSwitchPref() {

@@ -28,7 +28,6 @@ import java.util.GregorianCalendar;
 
 import picframe.at.picframe.helper.Keys;
 import picframe.at.picframe.settings.AppData;
-import picframe.at.picframe.service.DownloadService;
 
 
 /**
@@ -48,10 +47,6 @@ public class AlarmReceiver extends BroadcastReceiver {
 
 //        Long scheduledAlarm = lastAlarmTime+AppData.getUpdateIntervalInHours();
         Long currentTime = new GregorianCalendar().getTimeInMillis();
-
-        Intent startDownloadIntent = new Intent(context, DownloadService.class);
-        startDownloadIntent.setAction(Keys.ACTION_STARTDOWNLOAD);
-        context.startService(startDownloadIntent);
 
         AppData.setLastAlarmTime(currentTime);
 
