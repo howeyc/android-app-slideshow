@@ -15,8 +15,8 @@ android {
         applicationId "com.github.howeyc.slideshow"
         minSdkVersion 8
         targetSdkVersion 21
-        versionCode 16
-        versionName "2.1.1"
+        versionCode 17
+        versionName "2.2.0"
     }
     buildTypes {
         release {
